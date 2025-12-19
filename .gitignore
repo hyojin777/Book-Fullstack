@@ -1,0 +1,20 @@
+.vscode/
+.idea/
+
+# Environment
+.env
+*.key
+*.pem
+
+# Java / Spring
+*.class
+.grandle/
+build/
+
+# React / NodeJS
+mode_modules/
+
+#Package files
+*.jar
+*.war
+*.ear
