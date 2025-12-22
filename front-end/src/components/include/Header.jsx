@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { LogoutGoogle } from '../../service/authLogic'
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [myName, setMyname] = useState(() => {
-    return window.localStorage.getItem("email")
-  })
+  const [myName, setMyname] = useState('')
+  useEffect(() => {
+    const email = window.localStorage.getItem("email")
+    if (email) {
+      setIsLoggedIn(true)
+      setMyname(email)
+    }
+  }, []) // 최초 한번만
+
+  // !!! 문제 발생 (개선 필요)
 
   // 로그아웃
   const handleLogout = () => {
@@ -39,13 +46,13 @@ const Header = () => {
       {/*로그인, 로그아웃, 로그인한 이메일주소*/}
         <div className="d-flex">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* 로그인 성공 */}  
+            {/* 로그아웃 상태 */}  
             {!isLoggedIn && (              
               <li className="nav-item" id="login">
                 <Link className="nav-link active" to="/login">로그인</Link>
               </li>      
             )}
-            {/* 로그아웃 성공 */}   
+            {/* 로그인 상태 */}   
             {isLoggedIn && (      
               <>      
                 <li className="nav-item" id="myEmail">
