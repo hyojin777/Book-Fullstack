@@ -2,6 +2,7 @@ import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import app from "./firebase";
 export const auth = getAuth(app);
@@ -38,9 +39,10 @@ export default AuthLogic; //외부 js에서 사용할 때
 */
 export const LoginGoogle = async() => {
   try {
-    // signInWithPopup(인증객체, 로그인제공자): Firebase 인증 함수
+    // signInWithPopup(인증객체, 로그인제공자): Firebase 인증(로그인) 함수
     const result = await signInWithPopup(auth, googleProvider)
     const user = result.user;
+    // 로그인 성공시 localStorage(브라우저)에 정보 저장
     window.localStorage.setItem("uid", user.uid);
     window.localStorage.setItem("email", user.email);
     return user
@@ -53,6 +55,18 @@ export const LoginGoogle = async() => {
 /*
   구글 로그아웃
 */
+export const LogoutGoogle = async() => {
+  try {
+    // signOut(인증객체):  Firebase 인증(로그아웃) 함수
+    await signOut(auth)
+    // 로그아웃 성공시 localStorage(브라우저)에 정보 제거
+    window.localStorage.removeItem("uid")
+    window.localStorage.removeItem("email")
+    } catch (error) {
+    console.log("Google Logout Fail");
+    throw error;
+  }
+}
 
 /*
   구글 인증 상태 변화 감지
