@@ -29,13 +29,13 @@ const Header = () => {
       <div className="container-fluid">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link" href="#">도서 검색</Link>
+            <Link className="nav-link" to="/book">도서 검색</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href="#">부서 관리</Link>
+            <Link className="nav-link" to="/dept">부서 관리</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href="#">공지 사항</Link>
+            <Link className="nav-link" to="/notice">공지 사항</Link>
           </li>
         </ul>
 
