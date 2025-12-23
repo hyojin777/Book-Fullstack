@@ -9,7 +9,7 @@ const DeptList = () => {
         dname : '영업부',
         loc : '대전'
       }
-      const res = await deptListDB()
+      const res = await deptListDB(dept)
       console.log(res.data)
     }
     deptList()
