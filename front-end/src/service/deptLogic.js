@@ -12,7 +12,7 @@ export const deptListDB = async (data) => {
     console.log(res.data)
     return res
   } catch (error) {
-    console.error("부서목록 가져오기 실패", error)
+    console.error("부서목록 조회 실패", error)
     // 호출한 쪽에서 catch하도록 다시 던져 줄 때
     throw error
   }
@@ -27,8 +27,20 @@ export const deptListDB2 = async (params) => {
     console.log(res.data)
     return res
   } catch (error) {
-    console.error("부서목록 가져오기 실패", error)
+    console.error("부서목록 조회 실패", error)
     // 호출한 쪽에서 catch하도록 다시 던져 줄 때
     throw error
+  }
+}
+
+// 2) 부서 목록 등록
+export const deptInsertDB = async (data) => {
+  console.log(data)
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_EXPRESS_IP}dept`, data)
+    console.log(res.data)
+    return res
+  } catch (error) {
+    console.error("부서목록 등록 실패", error)
   }
 }
